@@ -18,24 +18,38 @@
 
 	<c:import url="/WEB-INF/jsp/menu.jsp" />
 
+	<c:set var="titulo" value="Cadastramento de Times" />
+	<c:set var="rota" value="/time/incluir" />
+	<c:set var="metodo" value="post" />
+	<c:set var="botao" value="cadastrar" />
+
+	<c:if test="${not empty time}">
+		<c:set var="titulo" value="Consulta de Time" />
+		<c:set var="rota" value="/voltar" />
+		<c:set var="metodo" value="get" />
+		<c:set var="botao" value="Voltar" />
+
+	</c:if>
+
 	<div class="container">
 
-		<h2>Cadastramento de Times</h2>
+		<h2>${titulo}</h2>
 
-		<form action="/time/incluir" method="post">
+		<form action="${rota}" method="${metodo}">
 			<div class="form-group">
-				<label>Nome:</label> <input type="text"
-					class="form-control" placeholder="Entre com o nome do time"
+				<label>Nome:</label> <input type="text" class="form-control"
+					value="${time.nome}" placeholder="Entre com o nome do time"
 					name="nome">
 			</div>
-			
+
 			<div class="form-group">
-				<label>Nome:</label> <input type="text"
-					class="form-control" placeholder="Entre com o Ano de Fundação do time"
+				<label>Ano de Fundação:</label> <input type="text" class="form-control"
+					value="${time.anoFundacao}"
+					placeholder="Entre com o Ano de Fundação do time"
 					name="anoFundacao">
 			</div>
-			
-			<button type="submit" class="btn btn-default">Cadastrar</button>
+
+			<button type="submit" class="btn btn-default">${botao}</button>
 		</form>
 	</div>
 

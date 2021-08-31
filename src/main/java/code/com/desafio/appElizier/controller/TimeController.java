@@ -6,13 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import code.com.desafio.appElizier.model.domain.Time;
 import code.com.desafio.appElizier.model.service.TimeService;
 
 @Controller
 public class TimeController {
-	
+
 	@Autowired
 	private TimeService timeservice;
 
@@ -49,10 +50,14 @@ public class TimeController {
 
 	}
 
-	@GetMapping(value = "/time/consultar")
-	public String consultar() {
+	@GetMapping(value = "/time/{id}/consultar")
+	public String consultar(Model model, @PathVariable Integer id) {
 
-		return "";
+		Time time = timeservice.obterPorId(id);
+
+		model.addAttribute("time", time);
+
+		return "time/cadastro";
 	}
 
 	@GetMapping(value = "/time/lista")
@@ -63,4 +68,17 @@ public class TimeController {
 		return "time/lista";
 	}
 
+	@GetMapping(value = "/voltar")
+	public String voltar() {
+		return "redirect:/time/lista";
+	}
+	
+	@PostMapping(value = "/time/ordenar")
+	public String ordenar(Model model, @RequestParam String sortBy) {
+		
+		model.addAttribute("times", timeservice.obterLista(sortBy));
+		
+		return "time/lista";
+	}
+	
 }
