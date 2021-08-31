@@ -25,28 +25,31 @@
 			</div>
 		</c:if>
 
-	 	<h3>
+		<h3>
 			<a href="/time">Incluir um novo time</a>
 		</h3>
 
 		<c:if test="${not empty times}">
 
-			<h2>Listagem de Times: ${times.size()}</h2>	
+		<h2>Listagem de Times:${times.size()}</h2>
 
 			<form action="/time/ordenar" method="post">
 				<div class="input-group">
-				
-				<select name="sortBy" class="form-control">
-					<option value="nome">Nome<option>
-					<option value="anoFundacao">Ano de Fundacao<option>
-				</select>
-				<div class="input-group-btn">
+
+					<select name="sortBy" class="form-control">
+						<option value="nome">Nome
+						<option>
+						<option value="anoFundacao">Ano de Fundacao
+						<option>
+					</select>
+					<div class="input-group-btn">
 						<button class="btn btn-default" type="submit">
-							<i class="glyphicon glyphicon-sort-by-alphabet"> </i></button>
+							<i class="glyphicon glyphicon-sort-by-alphabet"> </i>
+						</button>
 					</div>
 				</div>
 			</form>
-	
+
 			<table class="table table-striped">
 				<thead>
 					<tr>
