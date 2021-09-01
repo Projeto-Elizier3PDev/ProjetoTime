@@ -64,7 +64,6 @@
 
 					<c:forEach var="time" items="${times}">
 						<tr>
-							<td></td>
 							<td>${time.id}</td>
 							<td>${time.nome}</td>
 							<td>${time.anoFundacao}</td>
