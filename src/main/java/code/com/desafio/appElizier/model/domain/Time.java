@@ -4,22 +4,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-//@Table(name = "nome da tabela") // nomear tabela
 public class Time {
 	 
 	 @Id
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 private Integer id;
-	 private String nome;//Flamengo, Real Madrid 
-	 private int anoFundacao;//1895, 1902
-	 private float valor;//R$3.000.000.000,00, R$10.000.000.000,00
-	 private String siglaNacao;//BR, ES
-	 private boolean clubeEmpresa;//uma organização sem fins lucrativos, um clube-empresa
+	 private String nome;
+	 private int anoFundacao;
+	 private float valor;
+	 private String siglaNacao;
+	 private boolean clubeEmpresa;
+	 @ManyToOne
+	 private Usuario usuario;
 	 
-	 public Time() {
+	 public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Time() {
 		 
 		 this.valor = 999;
 		 this.siglaNacao = "BR";

@@ -10,12 +10,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import code.com.desafio.appElizier.model.domain.Time;
 import code.com.desafio.appElizier.model.service.TimeService;
+import code.com.desafio.appElizier.model.service.UsuarioService;
 
 @Controller
 public class TimeController {
 
 	@Autowired
 	private TimeService timeservice;
+	
+	@Autowired
+	private UsuarioService usuarioService; 
 
 	@GetMapping(value = "/")
 	public String inicializa() {
@@ -23,7 +27,9 @@ public class TimeController {
 	}
 
 	@GetMapping(value = "/time")
-	public String telaCadastro() {
+	public String telaCadastro(Model model) {
+		
+		model.addAttribute("usuarioLista", usuarioService.obterLista());
 
 		return "time/cadastro";
 	}
@@ -57,7 +63,7 @@ public class TimeController {
 
 		model.addAttribute("time", time);
 
-		return "time/cadastro";
+		return telaCadastro(model);
 	}
 
 	@GetMapping(value = "/time/lista")
